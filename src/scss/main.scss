@@ -57,7 +57,7 @@ $hamburger-active-layer-color  : gray ;
   }
 
   &__body{
-    width: 100%;
+    width: calc(100% - $sidebarWidth)
     flex:none;
     height: 100%;
     position: relative;
