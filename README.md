@@ -43,15 +43,15 @@ When designing this boilerplate, we tried to make chunk setting easy.
 
 By Default, if you want your output page name to be `ex1.html`, and you are not going to use a specfic entry chunk, you will need:
 
-- an `ex1.ejs` file in `./src/examples`  
-- an `ex1.ts` file in `./src/ts/examples`
-- an `ex1.scss` file in `./src/scss/examples`
+- an `ex1.ejs` file in `./src/examples`
+- an `ex1.ts` file in `./src/ts/examples`, or an `main.ts` file in `./src/ts/examples/ex1/`
+- an `ex1.scss` file in `./src/scss/examples`, `main.scss` file in `./src/scss/examples/ex1/`
 
 On the other hand, if you want your output page name to be `ex1.html`,and using a shared chunk named `main`, then you will need:
 
 - an `ex1.main.ejs` file in `./src/examples`  
-- an `main.ts` file in `./src/ts/examples`
-- an `main.scss` file in `./src/scss/examples`
+- an `main.ts` file in `./src/ts/examples`, or an `main.ts` file in `./src/scss/examples/main/`
+- an `main.scss` file in `./src/scss/examples`,or an `main.scss` file in `./src/scss/examples/main/`
 
 ### I want to get webpack `mode` environment argument in `ejs` file, how can I make this?
 
