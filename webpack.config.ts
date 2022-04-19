@@ -24,6 +24,7 @@ const getExampleEntries = ()=>{
   const folderPath = resolve(__dirname, `./src/examples`);
   const entryObj: webpack.EntryObject = {};
   fs.readdirSync(folderPath).forEach((entryName: string) => {
+    if(!fs.lstatSync(`${folderPath}/${entryName}`).isDirectory())return;
     const scriptEntryPath1 = resolve(__dirname, `${folderPath}/${entryName}/index.ts`);
     const scriptEntryPath2 = resolve(__dirname, `${folderPath}/${entryName}/ts/index.ts`);
     const scriptEntry = fs.existsSync(scriptEntryPath1) ? scriptEntryPath1 : fs.existsSync(scriptEntryPath2)? scriptEntryPath2:undefined;
@@ -61,9 +62,10 @@ const getBaseTemplateInstances = ()=>{
 }
 
 const getExampleEntryTemplateInstances = () => {
-  const forderPath = resolve(__dirname, `./src/examples`);
-  return fs.readdirSync(forderPath).map((entryName: string) => {
-    const ejsFilePath = resolve(forderPath, `${entryName}/index.ejs`);
+  const folderPath = resolve(__dirname, `./src/examples`);
+  return fs.readdirSync(folderPath).map((entryName: string) => {
+    if(!fs.lstatSync(`${folderPath}/${entryName}`).isDirectory())return;
+    const ejsFilePath = resolve(folderPath, `${entryName}/index.ejs`);
     const content = fs.readFileSync(ejsFilePath, 'utf8')
     if (!content) {
       fs.writeFile(ejsFilePath, ' ', () => { });
