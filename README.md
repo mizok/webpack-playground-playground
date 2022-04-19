@@ -2,7 +2,7 @@
 title: webpack-playground-template
 date: 
 author: Mizok
-version: 0.9.0
+version: 0.9.1
 tags: 
 ---
 
@@ -39,9 +39,9 @@ for more detail, please check links below:
 
 first you have to create a folder under `src/examples` for your new example.
 then you will have to add these files into the new folder:
-- a `index.ejs` 
-- a `index.ts` or add a `ts` folder then add a `index.ts` inside it.
-- a `main.scss` or add a `scss` folder then add a `main.scss` inside it.
+- an `index.ejs`
+- an `index.ts` or add a `ts` folder then add an `index.ts` inside it. (Optional)
+- an `main.scss` or add a `scss` folder then add an `main.scss` inside it. (Optional)
 
 ### I want to get webpack `mode` environment argument in `ejs` file, how can I make this?
 
