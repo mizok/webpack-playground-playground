@@ -4,10 +4,12 @@ const CopyPlugin = require('copy-webpack-plugin');
 const TerserPlugin = require("terser-webpack-plugin");
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin');
+import chalk from 'chalk';
 import * as webpack from 'webpack';
 import 'webpack-dev-server'; // dont remove this import, it's for webpack-dev-server type
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 const COMPRESS = true;
+const warn = chalk.bgYellow.black; 
 
 const getBaseEntry = ()=>{
   const baseFolder = `./src/base`;
@@ -66,10 +68,16 @@ const getExampleEntryTemplateInstances = () => {
   return fs.readdirSync(folderPath).map((entryName: string) => {
     if(!fs.lstatSync(`${folderPath}/${entryName}`).isDirectory())return;
     const ejsFilePath = resolve(folderPath, `${entryName}/index.ejs`);
+    if(!fs.existsSync(ejsFilePath)){
+      const msg = warn(`WARNING: "./src/examples/${entryName}/" is an empty folder, no template files detected inside`);
+      console.log(msg)
+      return;
+    }
     const content = fs.readFileSync(ejsFilePath, 'utf8')
     if (!content) {
       fs.writeFile(ejsFilePath, ' ', () => { });
-      console.warn(`WARNING : ${entryName} is an empty file`);
+      const msg = warn(`WARNING : ${entryName} is an empty file, no inner content detected, since this boilerplate don't allow using empty template files, a blank space has been added to this file automatically`);
+      console.log(msg);
     }
 
     return new HtmlWebpackPlugin({
